@@ -1,9 +1,12 @@
 #!/bin/bash
-STAGEFOLDER="/Library/BIService/"
-URL="https://builds.parsec.app/package/parsec-macos.pkg"
+STAGEFOLDER="/Library/BIService"
+URL="https://dl.massive.io/MASV.dmg"
 
-curl -L -o "$STAGEFOLDER"/masv.pkg $URL
-installer -pkg "$STAGEFOLDER"/masv.pkg -target /Applications/
-rm "$STAGEFOLDER"/masv.pkg
+# sudo curl -L -o "$STAGEFOLDER"/MASV.dmg $URL
+cd "$STAGEFOLDER"
+sudo hdiutil attach MASV.dmg
+cd "/Volumes/MASV*"
+sudo cp -rf MASV.app /Applications
+sudo hdiutil detach MASV.dmg
 
 exit 0
